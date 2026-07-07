@@ -1,0 +1,22 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.nav
+*.snm
+*.vrb
+
+# Keep compiled PDFs out of git — CI builds and publishes them to Pages
+*.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
