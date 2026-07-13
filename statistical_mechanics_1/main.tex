@@ -16,17 +16,18 @@
 \noindent
 \begin{minipage}[t]{0.5\textwidth}
 \raggedright
-\Large Statistical Physics examples solutions 1
+\Large Statistical Physics examples 1 solutions
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
 \raggedleft
-Billy Adamson
+Billy Adamson \\
+Lent 2024
 \end{minipage}
 
 \vspace{1em}
 
 \begin{problem}
-1. Establish Stirling's formula as follows. Start with
+\textbf{1.} Establish Stirling's formula as follows. Start with
 \[
 n! = \int_0^\infty e^{-x}x^n\,dx \equiv \int_0^\infty e^{-F(x)}\,dx.
 \]
@@ -135,7 +136,7 @@ n! \approx e^{-F(n)}\sqrt{2\pi n} = e^{-n+n\ln n}\sqrt{2\pi n}.
 \end{solution}
 
 \begin{problem}
-2. A cubic box is described by a three-dimensional infinite square well with $0\le x,y,z\le a$
+\textbf{2.} A cubic box is described by a three-dimensional infinite square well with $0\le x,y,z\le a$
 and corresponding single-particle energy eigenstates
 \[
 E=\frac{\hbar^2\pi^2}{2ma^2}(p^2+q^2+r^2)
@@ -339,7 +340,7 @@ p(E_1)\text{ is negligible whenever }
 \end{solution}
 
 \begin{problem}
-4. (a) Show that two coupled systems in the microcanonical ensemble, each with heat
+\textbf{4.} (a) Show that two coupled systems in the microcanonical ensemble, each with heat
 capacity $C$, maximize their entropy at equal temperature only if $C$ is positive.
 
 (b) In the canonical ensemble, show that the fluctuations in energy,
@@ -427,6 +428,552 @@ S=-k_B\sum_n p_n(-\beta E_n-\ln Z)
 \[
 \boxed{S=k_B\frac{\partial}{\partial T}(T\ln Z)}
 \]
+\end{solution}
+
+\begin{problem}
+\textbf{5.} Gas in an insulated container of fixed volume $V$ is divided into two parts of volumes
+$V_1$ and $V_2$ by a thin, movable barrier (i.e.\ energy can pass through the barrier). Show
+using the first law in the form
+\[
+dS = \frac{dE}{T} + \frac{p\,dV}{T}
+\]
+that the temperatures and pressures in the two parts are equal in equilibrium.
+\end{problem}
+
+\begin{solution}
+\[
+dS_1 = \frac{dE_1}{T_1} + \frac{p_1\,dV_1}{T_1},
+\qquad
+dS_2 = \frac{dE_2}{T_2} + \frac{p_2\,dV_2}{T_2}
+\]
+
+\[
+dS = dS_1 + dS_2
+= \frac{dE_1}{T_1} + \frac{p_1\,dV_1}{T_1} - \frac{dE_1}{T_2} - \frac{p_2\,dV_1}{T_2}
+\]
+
+\[
+dS = \left(\frac{1}{T_1} - \frac{1}{T_2}\right) dE_1
++ \left(\frac{p_1}{T_1} - \frac{p_2}{T_2}\right) dV_1
+\]
+
+At equilibrium $dS = 0$:
+\[
+\frac{1}{T_1} - \frac{1}{T_2} = 0
+\quad \Longrightarrow \quad
+\boxed{T_1 = T_2}
+\]
+\[
+\frac{p_1}{T_1} - \frac{p_2}{T_2} = 0
+\quad \Longrightarrow \quad
+\boxed{p_1 = p_2} \ \ (\text{using } T_1 = T_2)
+\]
+\end{solution}
+
+\begin{problem}
+\textbf{6.} A system consists of $N$ spin-$\frac12$ particles with fixed positions. Each particle
+can be in one of two quantum states: spin ``up'' or ``down'', labelled by
+$s_z\in\{\frac12,-\frac12\}$. There is a magnetic field of strength $B$ in the $z$-direction so
+the energy of a particle is $-\mu Bs_z$ where $\mu$ is a constant.
+
+(a)(i) How many states are there with $N_\uparrow$ spin ``up'' particles and
+$N_\downarrow=N-N_\uparrow$ spin ``down'' particles? Express the energy of such a state as a
+function of $N_\uparrow$ and hence calculate the Boltzmann entropy $S(E)$, expressing your
+answer in terms of $N_\uparrow$. When $N,N_\uparrow$ and $N_\downarrow$ are all large use
+Stirling's approximation $n!\sim\sqrt{2\pi n}\,n^ne^{-n}$ to show that
+\[
+S(E)\approx -k_B\left[(N-N_\uparrow)\ln\!\left(\frac{N-N_\uparrow}{N}\right)+N_\uparrow\ln\!\left(\frac{N_\uparrow}{N}\right)\right].
+\]
+Plot $S$ as a function of $E$.
+
+(ii) Calculate the temperature $T$ as a function of $E$ and plot $\frac1T$ against $E$. What
+happens in the limits $T\to0$ and $T\to\infty$? Show that the temperature is \textit{negative}
+for $E>0$.
+
+[Negative temperature occurs if $\Omega$ decreases with $E$, which is the case here for $E>0$.
+For most systems, kinetic energy ensures that $\Omega$ always increases with $E$, so negative
+temperatures do not usually occur.]
+
+(b) Now consider this system in the canonical ensemble. Show that the partition function is
+\[
+Z=2^N\cosh^N\!\left(\frac{\beta\mu B}{2}\right).
+\]
+Find the average energy $E$ and entropy $S$. Show that your results for $E(T)$ and $S(T)$
+agree with the microcanonical calculations of part (a).
+
+(c) The \textit{magnetisation} of the system is defined by $M=\mu(N_\uparrow-N_\downarrow)/2$.
+Compute $M$ as a function of $(T,B)$. The magnetic susceptibility is defined as
+$\chi\equiv(\partial M/\partial B)_T$. Show that, at high temperature, the system obeys
+\textit{Curie's Law}: $\chi\sim\frac1T$.
+\end{problem}
+
+\begin{solution}
+\subsection*{(a)(i)}
+\[
+\Omega(N_\uparrow)=\binom{N}{N_\uparrow}=\frac{N!}{N_\uparrow!\,N_\downarrow!}.
+\]
+
+\[
+E=-\mu B\left(\frac{N_\uparrow}{2}-\frac{N_\downarrow}{2}\right)
+=-\frac{\mu B}{2}(N_\uparrow-N_\downarrow)
+=\mu B\left(\frac{N}{2}-N_\uparrow\right).
+\]
+
+\[
+S(E)=k_B\ln\Omega(N_\uparrow)=k_B\ln\!\left(\frac{N!}{N_\uparrow!\,N_\downarrow!}\right)
+=k_B\big[\ln N!-\ln N_\uparrow!-\ln N_\downarrow!\big].
+\]
+
+Use: $\ln n!\sim n\ln n-n$:
+\[
+S(E)\approx k_B\big[N\ln N-N-N_\uparrow\ln N_\uparrow+N_\uparrow-N_\downarrow\ln N_\downarrow+N_\downarrow\big].
+\]
+
+Since $N_\uparrow+N_\downarrow=N$, the linear terms cancel out:
+\[
+S(E)\approx k_B\big[N\ln N-N_\uparrow\ln N_\uparrow-N_\downarrow\ln N_\downarrow\big],
+\qquad
+N\ln N=(N_\uparrow+N_\downarrow)\ln N,
+\qquad
+N_\downarrow=N-N_\uparrow,
+\]
+\[
+S(E)\approx k_B\big[N_\uparrow(\ln N-\ln N_\uparrow)+N_\downarrow(\ln N-\ln N_\downarrow)\big]
+=-k_B\left[N_\uparrow\ln\!\left(\frac{N_\uparrow}{N}\right)+(N-N_\uparrow)\ln\!\left(\frac{N-N_\uparrow}{N}\right)\right].
+\]
+
+\[
+\boxed{S(E)\approx -k_B\left[(N-N_\uparrow)\ln\!\left(\frac{N-N_\uparrow}{N}\right)+N_\uparrow\ln\!\left(\frac{N_\uparrow}{N}\right)\right]}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=9cm, height=5.5cm,
+  domain=-0.98:0.98,
+  samples=200,
+  axis lines=middle,
+  xlabel={$E$}, ylabel={$S$},
+  ylabel style={yshift=2mm},
+  xtick={-1,0,1}, xticklabels={$-\frac{N\mu B}{2}$,$0$,$\frac{N\mu B}{2}$},
+  ytick={0.6931}, yticklabels={$Nk_B\ln2$},
+  yticklabel style={xshift=-3mm, yshift=1mm},
+  clip=false,
+  enlargelimits=upper,
+]
+\addplot [thick, blue, domain=-0.98:0.98]
+  {-((1-x)/2*ln((1-x)/2) + (1+x)/2*ln((1+x)/2))};
+\draw [dashed] (axis cs:-1,0) -- (axis cs:-1,0.75);
+\draw [dashed] (axis cs:1,0) -- (axis cs:1,0.75);
+\draw [dashed] (axis cs:-1,0.6931) -- (axis cs:1,0.6931);
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection*{(a)(ii)}
+\[
+\frac{dS}{dN_\uparrow}=k_B\ln\!\left(\frac{N_\downarrow}{N_\uparrow}\right),
+\qquad
+\frac{dN_\uparrow}{dE}=-\frac{1}{\mu B}.
+\]
+\[
+\frac1T=\frac{dS}{dE}=\frac{dS}{dN_\uparrow}\frac{dN_\uparrow}{dE}
+=\frac{k_B}{\mu B}\ln\!\left(\frac{N_\uparrow}{N_\downarrow}\right).
+\]
+Substituting $N_\uparrow=\dfrac{N}{2}-\dfrac{E}{\mu B}$, $N_\downarrow=\dfrac{N}{2}+\dfrac{E}{\mu B}$:
+\[
+\boxed{\frac1T=\frac{k_B}{\mu B}\ln\!\left(\frac{N\mu B-2E}{N\mu B+2E}\right)}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=9cm, height=5.5cm,
+  domain=-0.95:0.95,
+  samples=200,
+  axis lines=middle,
+  xlabel={$E$}, ylabel={$1/T$},
+  xtick={-1,0,1}, xticklabels={$-\frac{N\mu B}{2}$,$0$,$\frac{N\mu B}{2}$},
+  ytick=\empty,
+  clip=false,
+  enlargelimits=upper,
+]
+\addplot [thick, blue, domain=-0.95:0.95] {ln((1-x)/(1+x))};
+\draw [dashed] (axis cs:-1,-6) -- (axis cs:-1,6);
+\draw [dashed] (axis cs:1,-6) -- (axis cs:1,6);
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\[
+E\to-\frac{N\mu B}{2}:\quad \frac1T\to+\infty \;\Rightarrow\; T\to0^+.
+\]
+\[
+E\to0:\quad \frac1T\to0 \;\Rightarrow\; T\to\pm\infty.
+\]
+\[
+E\to\frac{N\mu B}{2}:\quad \frac1T\to-\infty \;\Rightarrow\; T\to0^-.
+\]
+
+For $E>0$, $N\mu B-2E<N\mu B+2E$, so the ratio inside the log is less than $1$ and
+$\ln(\cdots)<0$:
+\[
+\boxed{T<0 \text{ for } E>0}
+\]
+
+\subsection*{(b)}
+\[
+z=e^{\beta\mu B/2}+e^{-\beta\mu B/2}=2\cosh\!\left(\frac{\beta\mu B}{2}\right).
+\]
+\[
+\boxed{Z=z^N=2^N\cosh^N\!\left(\frac{\beta\mu B}{2}\right)}
+\]
+
+\[
+\langle E\rangle=-\frac{\partial}{\partial\beta}\ln Z
+=\boxed{-\frac{N\mu B}{2}\tanh\!\left(\frac{\beta\mu B}{2}\right)}
+\]
+
+Use $S=k_B\beta\langle E\rangle+k_B\ln Z$:
+\[
+\boxed{S=k_BN\left[\ln\!\left(2\cosh\frac{\beta\mu B}{2}\right)-\frac{\beta\mu B}{2}\tanh\frac{\beta\mu B}{2}\right]}
+\]
+
+From (a)(ii), $\beta\mu B=\ln(N_\uparrow/N_\downarrow)$, so with $N_\uparrow+N_\downarrow=N$:
+\[
+N_\uparrow=\frac{N}{2}\left(1+\tanh\frac{\beta\mu B}{2}\right),
+\qquad
+N_\downarrow=\frac{N}{2}\left(1-\tanh\frac{\beta\mu B}{2}\right).
+\]
+Into $E=\mu B(N/2-N_\uparrow)$:
+\[
+E=\mu B\left(\frac N2-\frac N2\Big(1+\tanh\frac{\beta\mu B}{2}\Big)\right)
+=-\frac{N\mu B}{2}\tanh\frac{\beta\mu B}{2}=\langle E\rangle.
+\]
+
+Into $S(E)=-k_B\big[N_\downarrow\ln(N_\downarrow/N)+N_\uparrow\ln(N_\uparrow/N)\big]$, with $x\equiv\beta\mu B/2$ and
+$\ln\!\frac{1\pm\tanh x}{2}=\pm x-\ln(2\cosh x)$:
+\[
+S=-k_BN\left[\frac{1-\tanh x}{2}\big(-x-\ln2\cosh x\big)+\frac{1+\tanh x}{2}\big(x-\ln2\cosh x\big)\right]
+=k_BN\big[\ln(2\cosh x)-x\tanh x\big]=S.
+\]
+
+\subsection*{(c)}
+\[
+N_\uparrow-N_\downarrow=N\tanh\!\left(\frac{\beta\mu B}{2}\right)
+\quad\Rightarrow\quad
+\boxed{M=\frac{\mu N}{2}\tanh\!\left(\frac{\mu B}{2k_BT}\right)}
+\]
+
+\[
+\chi=\left(\frac{\partial M}{\partial B}\right)_T
+=\frac{\mu N}{2}\cdot\frac{\mu}{2k_BT}\,\text{sech}^2\!\left(\frac{\mu B}{2k_BT}\right)
+=\boxed{\frac{N\mu^2}{4k_BT}\,\text{sech}^2\!\left(\frac{\mu B}{2k_BT}\right)}
+\]
+
+At high $T$, $\mu B/(2k_BT)\to0$ so $\text{sech}^2\to1$:
+\[
+\boxed{\chi\to\frac{N\mu^2}{4k_BT}\sim\frac1T}
+\]
+\end{solution}
+
+\begin{problem}
+\textbf{7.} * Consider a system of $N$ interacting spins. At low temperatures, the interactions
+ensure that the spins are either all aligned or all anti-aligned with the $z$-axis, even in the
+absence of an external field. At high temperatures, the interactions become less important and
+the spins can be either aligned or anti-aligned with the $z$-axis. The heat capacity takes the
+form
+\[
+C_V=C_{\max}\left(\frac{2T}{T_0}-1\right)\ \text{for}\ \frac{T_0}{2}<T<T_0\quad\text{and}\quad C_V=0\ \text{otherwise}.
+\]
+Determine $C_{\max}$.
+\end{problem}
+
+\begin{solution}
+$C_V=0$ outside $(T_0/2,T_0)$, so the entropy is constant below $T_0/2$ and above $T_0$; the
+entire entropy change happens across this window:
+\[
+\Delta S=\int_{T_0/2}^{T_0}\frac{C_V}{T}\,dT=S(T\ge T_0)-S(T\le T_0/2).
+\]
+Below $T_0/2$ the spins are locked all-up or all-down: $S(T\le T_0/2)=k_B\ln2$. Above $T_0$
+each of the $N$ spins is independently aligned or anti-aligned: $S(T\ge T_0)=Nk_B\ln2$. Hence
+\[
+\Delta S=(N-1)k_B\ln2\approx Nk_B\ln2 \quad (N\gg1).
+\]
+
+\[
+\int_{T_0/2}^{T_0}\frac{C_{\max}}{T}\left(\frac{2T}{T_0}-1\right)dT
+=C_{\max}\int_{T_0/2}^{T_0}\left(\frac{2}{T_0}-\frac1T\right)dT
+=C_{\max}\Big[2-\ln T_0-1+\ln\tfrac{T_0}{2}\Big]
+=C_{\max}(1-\ln2).
+\]
+
+\[
+C_{\max}(1-\ln2)=Nk_B\ln2
+\]
+\[
+\boxed{C_{\max}=\frac{Nk_B\ln2}{1-\ln2}}
+\]
+\end{solution}
+
+\begin{problem}
+\textbf{8.} Compute the partition function of a quantum harmonic oscillator with frequency
+$\omega$ and energy levels
+\[
+E_n=\hbar\omega\left(n+\frac12\right),\qquad n=0,1,2,\dots.
+\]
+Find the average energy $E$ as a function of temperature $T$.
+
+Einstein constructed a simple model of a solid as $N$ atoms, each of which vibrates with the
+same frequency $\omega$. Treating these vibrations as harmonic oscillators, show that at high
+temperatures, $k_BT\gg\hbar\omega$, the Einstein model correctly predicts the \textit{Dulong-Petit}
+law for the heat capacity of a solid,
+\[
+C_V=3Nk_B.
+\]
+
+At low temperatures, the heat capacity of many solids is experimentally observed to tend to
+zero as $C_V\sim T^3$. Was Einstein right about this?
+\end{problem}
+
+\begin{solution}
+\[
+Z=\sum_{n=0}^\infty e^{-\beta\hbar\omega(n+1/2)}
+=e^{-\beta\hbar\omega/2}\sum_{n=0}^\infty e^{-\beta\hbar\omega n}
+=\frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}}
+=\boxed{\frac{1}{2\sinh(\beta\hbar\omega/2)}}
+\]
+
+\[
+E=-\frac{\partial\ln Z}{\partial\beta}
+=\boxed{\frac{\hbar\omega}{2}+\frac{\hbar\omega}{e^{\hbar\omega/k_BT}-1}}
+\]
+
+Each atom vibrates in 3 independent directions, so $U=3NE$. Let $x=\dfrac{\hbar\omega}{k_BT}$,
+\[
+C_V=\frac{\partial U}{\partial T}=3N\hbar\omega\frac{\partial}{\partial T}\frac{1}{e^x-1}
+=\boxed{3Nk_B\,\frac{x^2e^x}{(e^x-1)^2}}
+\]
+
+High $T$ ($x\to0$): $e^x-1\approx x$, $e^x\approx1$, so $C_V\to3Nk_B$:
+\[
+\boxed{C_V\to3Nk_B}
+\]
+
+Low $T$ ($x\to\infty$): $e^x-1\approx e^x$, so
+\[
+C_V\approx3Nk_Bx^2e^{-x}\to0
+\]
+exponentially in $T$, not as $T^3$.
+\[
+\boxed{\text{Einstein was wrong about the low-}T\text{ behaviour.}}
+\]
+\end{solution}
+
+\begin{problem}
+\textbf{9.} Consider the Gibbs entropy for a probability distribution $p(n)$,
+\[
+S=-k_B\sum_n p(n)\ln p(n).
+\]
+
+(a) By implementing the constraint $\sum_np(n)=1$ through the use of a Lagrange multiplier show
+that, when restricted to states of fixed energy $E$, the entropy is maximised by the
+microcanonical ensemble in which all such states are equally likely. Further show that in this
+case the Gibbs entropy coincides with the Boltzmann entropy.
+
+(b) Show that at fixed \textit{average} energy $\langle E\rangle=\sum_np(n)E_n$, the entropy is
+maximised by the canonical ensemble. Moreover, show that the Lagrange multiplier imposing the
+constraint is proportional to $\beta$, the inverse temperature. Confirm that maximizing the
+entropy is equivalent to minimizing the free energy.
+
+(c) Show that at fixed average energy $\langle E\rangle$ and average particle number
+$\langle N\rangle$, the entropy is maximised by the grand canonical ensemble. What is the
+interpretation of the Lagrange multiplier in this case?
+\end{problem}
+
+\begin{solution}
+\subsection*{(a)}
+\[
+\mathcal{L}=-k_B\sum_np(n)\ln p(n)-\lambda\left(\sum_np(n)-1\right).
+\]
+\[
+\frac{\partial\mathcal{L}}{\partial p(n)}=-k_B\big(\ln p(n)+1\big)-\lambda=0
+\quad\Rightarrow\quad
+p(n)=e^{-1-\lambda/k_B}=\text{const}.
+\]
+Hence:
+\[
+\boxed{p(n)=\frac1\Omega}
+\]
+
+\[
+S=-k_B\sum_{n=1}^\Omega\frac1\Omega\ln\frac1\Omega=k_B\ln\Omega
+\]
+\[
+\boxed{S=k_B\ln\Omega}
+\]
+
+\subsection*{(b)}
+\[
+\mathcal{L}=-k_B\sum_np(n)\ln p(n)-\lambda\left(\sum_np(n)-1\right)-\gamma\left(\sum_np(n)E_n-\langle E\rangle\right).
+\]
+\[
+\frac{\partial\mathcal{L}}{\partial p(n)}=-k_B\big(\ln p(n)+1\big)-\lambda-\gamma E_n=0
+\quad\Rightarrow\quad
+p(n)=Ae^{-\gamma E_n/k_B}.
+\]
+Comparing with $p(n)=e^{-\beta E_n}/Z$:
+\[
+\boxed{A=\frac1Z,\qquad \gamma=k_B\beta}
+\]
+
+At the extremum,
+\[
+S=-k_B\sum_np(n)\big[-\beta E_n-\ln Z\big]=k_B\beta\langle E\rangle+k_B\ln Z,
+\]
+\[
+TS=\langle E\rangle+k_BT\ln Z
+\quad\Rightarrow\quad
+\langle E\rangle-TS=-k_BT\ln Z\equiv F.
+\]
+\[
+\boxed{\text{maximising }S \iff \text{minimising }F}
+\]
+
+\subsection*{(c)}
+\[
+\frac{\partial\mathcal{L}}{\partial p(n)}=-k_B\big(\ln p(n)+1\big)-\lambda-\gamma E_n-\delta N_n=0
+\quad\Rightarrow\quad
+p(n)=Ae^{-\gamma E_n/k_B-\delta N_n/k_B}.
+\]
+Comparing with $p(n)=e^{-\beta(E_n-\mu N_n)}/\Xi$:
+\[
+\boxed{\gamma=k_B\beta,\qquad \delta=-\mu/T}
+\]
+\end{solution}
+
+\begin{problem}
+\textbf{10.} Let $Z_N$ be the canonical partition function for $N$ particles. Show that the
+grand partition function $\mathcal{Z}$ can be written as
+\[
+\mathcal{Z}(\mu,V,T)=\sum_{N=0}^\infty\xi^NZ_N(V,T)
+\]
+where $\xi=e^{\beta\mu}$ is called the \textit{fugacity}. Show that
+\[
+\langle N\rangle=\xi\frac{\partial}{\partial\xi}\ln\mathcal{Z},
+\qquad
+(\Delta N)^2=\left(\xi\frac{\partial}{\partial\xi}\right)^2\ln\mathcal{Z}.
+\]
+If $Z_N=Z_1^N/N!$ show that $\mathcal{Z}(\xi,V,T)=e^{\xi Z_1(V,T)}$. For this case, show also
+that
+\[
+\frac{\Delta N}{\langle N\rangle}=\frac{1}{\langle N\rangle^{1/2}}.
+\]
+\end{problem}
+
+\begin{solution}
+\[
+\mathcal{Z}=\sum_N\sum_{\text{states}}e^{-\beta(E-\mu N)}
+=\sum_Ne^{\beta\mu N}\sum_{\text{states}}e^{-\beta E}
+=\boxed{\sum_N\xi^NZ_N(V,T)}
+\]
+
+\[
+\langle N\rangle=\frac{\sum_NN\xi^NZ_N}{\mathcal{Z}}=\frac{\xi\,\partial\mathcal{Z}/\partial\xi}{\mathcal{Z}}
+=\boxed{\xi\frac{\partial}{\partial\xi}\ln\mathcal{Z}}
+\]
+
+\[
+\xi\frac{\partial\langle N\rangle}{\partial\xi}
+=\xi\frac{\partial}{\partial\xi}\!\left(\frac{\xi\mathcal{Z}'}{\mathcal{Z}}\right)
+=\langle N\rangle+\frac{\xi^2\mathcal{Z}''}{\mathcal{Z}}-\langle N\rangle^2
+=\langle N(N-1)\rangle+\langle N\rangle-\langle N\rangle^2
+=\boxed{\langle N^2\rangle-\langle N\rangle^2=(\Delta N)^2}
+\]
+
+\[
+\mathcal{Z}=\sum_N\xi^N\frac{Z_1^N}{N!}=\boxed{e^{\xi Z_1(V,T)}}
+\]
+
+\[
+\langle N\rangle=\xi\frac{\partial}{\partial\xi}(\xi Z_1)=\xi Z_1,
+\qquad
+(\Delta N)^2=\xi\frac{\partial}{\partial\xi}(\xi Z_1)=\xi Z_1=\langle N\rangle.
+\]
+\[
+\boxed{\frac{\Delta N}{\langle N\rangle}=\frac{\langle N\rangle^{1/2}}{\langle N\rangle}=\frac{1}{\langle N\rangle^{1/2}}}
+\]
+\end{solution}
+
+\begin{problem}
+\textbf{11.} Make use of the fact that the free energy $F(T,V,N)$ of a thermodynamic system
+must be extensive, to explain why
+\[
+F=V\left(\frac{\partial F}{\partial V}\right)_{T,N}+N\left(\frac{\partial F}{\partial N}\right)_{T,V}.
+\]
+The \textit{Gibbs free energy} is defined as $G=F+pV$. Use the result above for $F$ to show
+that the Gibbs free energy can be expressed as $G=\mu N$. Explain why this result was to be
+expected from the scaling behaviour of $G$.
+\end{problem}
+
+\begin{solution}
+Extensivity means $F(T,\lambda V,\lambda N)=\lambda F(T,V,N)$ for all $\lambda$: $F$ is
+homogeneous of degree 1 in $(V,N)$ at fixed $T$. Differentiating both sides with respect to
+$\lambda$ and setting $\lambda=1$:
+\[
+\boxed{F=V\left(\frac{\partial F}{\partial V}\right)_{T,N}+N\left(\frac{\partial F}{\partial N}\right)_{T,V}}
+\]
+
+Using $\left(\dfrac{\partial F}{\partial V}\right)_{T,N}=-p$ and $\left(\dfrac{\partial F}{\partial N}\right)_{T,V}=\mu$:
+\[
+F=-pV+\mu N
+\quad\Rightarrow\quad
+G=F+pV=\boxed{\mu N}
+\]
+
+Since $T,p$ are intensive, $G(T,p,N)$ is homogeneous of degree 1 in $N$ alone at fixed $T,p$:
+$G(T,p,\lambda N)=\lambda G(T,p,N)$. Euler's theorem for a single variable then gives
+$G=N\left(\dfrac{\partial G}{\partial N}\right)_{T,p}=N\mu$ directly, exactly the result above.
+\end{solution}
+
+\begin{problem}
+\textbf{12.} A neutral gas consists of $N_e$ electrons $e^-$, $N_p$ protons $p^+$ and $N_H$
+hydrogen atoms $H$. An electron and proton can combine to form Hydrogen,
+\[
+e^-+p^+\leftrightarrow H.
+\]
+At fixed temperature and volume, the free energy of the system is $F(T,V;N_e,N_p,N_H)$. We can
+define a chemical potential for each of the three species as
+\[
+\mu_i=\frac{\partial F}{\partial N_i}.
+\]
+By minimizing the free energy, together with suitable constraints on the particle numbers, show
+that the condition for equilibrium is
+\[
+\mu_e+\mu_p=\mu_H.
+\]
+Such reactions usually take place at constant pressure, rather than constant volume. What
+quantity should you consider instead of $F$ in this case?
+\end{problem}
+
+\begin{solution}
+\[
+dN_e=dN_p=-d\xi,\qquad dN_H=d\xi.
+\]
+\[
+dF=\mu_e\,dN_e+\mu_p\,dN_p+\mu_H\,dN_H=(-\mu_e-\mu_p+\mu_H)\,d\xi=0
+\]
+for all $d\xi$, so
+\[
+\boxed{\mu_e+\mu_p=\mu_H}
+\]
+
+At constant pressure:
+\[
+\boxed{G=F+pV}
+\]
+since $dG=-S\,dT+V\,dp+\sum_i\mu_i\,dN_i$ is minimised at fixed $T,p$, and the same argument
+gives the same equilibrium condition.
 \end{solution}
 
 \end{document}
