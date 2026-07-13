@@ -35,6 +35,7 @@ jobs:
         with:
           root_file: ${{ steps.find.outputs.files }}
           latexmk_use_xelatex: false
+          work_in_root_file_dir: true
 
       - name: Assemble Pages site
         run: bash scripts/build_site.sh
